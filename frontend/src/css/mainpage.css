@@ -1,0 +1,101 @@
+/* quiz wrapper */
+.main-container {
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* heading */
+.main-heading {
+  text-align: center;
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 1.5rem;
+}
+
+/* question text */
+.question-para {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #444;
+  margin-bottom: 1rem;
+}
+
+/* option layout */
+.option-radio {
+  margin-right: 0.6rem;
+  accent-color: #0078d7;
+}
+
+.option-lbl {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+}
+
+/* navigation buttons */
+.previous-btn,
+.next-btn,
+.submit-btn {
+  padding: 0.7rem 1.2rem;
+  margin: 1rem 0.5rem 0 0;
+  font-size: 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.previous-btn {
+  background-color: #ddd;
+  color: #333;
+}
+
+.previous-btn:disabled {
+  background-color: #f2f2f2;
+  cursor: not-allowed;
+}
+
+.next-btn {
+  background-color: #0078d7;
+  color: white;
+}
+
+.submit-btn {
+  background-color: #28a745;
+  color: white;
+}
+
+.next-btn:hover {
+  background-color: #005fa3;
+}
+
+.submit-btn:hover {
+  background-color: #218838;
+}
+
+/* score display */
+.score-container {
+  margin-top: 2rem;
+  padding: 1rem;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+}
+
+.score {
+  text-align: center;
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.result-para {
+  font-size: 1rem;
+  margin: 0.3rem 0;
+  color: #666;
+}
