@@ -40,13 +40,20 @@ def create_tables():
 @app.route("/", defaults={"path": ""})
 @app.route("/<path:path>")
 def serve_react(path):
+    # keep API endpoints separate
+    if path.startswith("api/") or path.startswith("__debug__"):
+        return jsonify({"error": "Not found"}), 404
+
     target = FRONTEND_BUILD / path
     if path != "" and target.exists() and target.is_file():
         return send_from_directory(str(FRONTEND_BUILD), path)
+
     index_file = FRONTEND_BUILD / "index.html"
     if index_file.exists():
         return send_from_directory(str(FRONTEND_BUILD), "index.html")
+
     return jsonify({"status": "ok", "message": "API running but frontend build not found"}), 200
+
 
 @app.route("/health")
 def health():
