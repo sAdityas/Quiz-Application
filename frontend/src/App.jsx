@@ -12,6 +12,7 @@ function App() {
   return (
     <BrowserRouter>
     <Renderer />
+      <div className='container-main'>
     <Routes>
       <Route path='/quiz/*' element={<QuizPage />} />
       <Route path='/add' element={<AddQs />} />
@@ -21,6 +22,7 @@ function App() {
       <Route path="/SnD/*" element={<SnD />} />
       <Route path="*" element={<LoginUser />} />
       </Routes>
+      </div>
       </BrowserRouter>
   );
 }

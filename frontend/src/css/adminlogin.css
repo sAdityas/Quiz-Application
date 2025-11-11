@@ -1,0 +1,22 @@
+.container{
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    flex-direction: column;
+    width: 30rem;
+    background:rgb(251, 244, 244);
+}
+
+.form-admin{
+    display: flex;
+    flex-direction: column;
+}
+
+.login-button{
+    width: 8rem;
+    margin: 0.5rem;
+}
+
+.form-input{
+    width: 15rem;
+}

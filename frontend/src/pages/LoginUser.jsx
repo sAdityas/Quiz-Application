@@ -15,7 +15,7 @@ const LoginUser = () => {
 
   useEffect(() => {
     axios
-      .get('http://192.168.0.240:5000/api/paper/all')
+      .get('http://localhost:5000/api/paper/all')
       .then(res => setPapers(res.data.papers || ['No papers available']))
       .catch(err => console.error("Error fetching papers:", err));
 
@@ -32,7 +32,7 @@ const LoginUser = () => {
     try {
 
       // Validate inputs
-      await axios.post('http://192.168.0.240:5000/api/user/login', { user, Uid: id });
+      await axios.post('http://localhost:5000/api/user/login', { user, Uid: id });
       
       sessionStorage.setItem('user', user);
       sessionStorage.setItem('id', id);
@@ -50,7 +50,7 @@ const LoginUser = () => {
         localStorage.setItem('completed', 'false');
         setTimeout(() =>{ navigate('/admin', { replace: true }); sessionStorage.clear();}, 1000);
       } else {
-        const res = await axios.get(`http://192.168.0.240:5000/api/user/getScore?name=${(user.toUpperCase())}&Uid=${id}`);
+        const res = await axios.get(`http://localhost:5000/api/user/getScore?name=${(user.toUpperCase())}&Uid=${id}`);
         const existingScore = res?.data?.score;
         console.log("Existing Score:", existingScore);
       if (existingScore && Number(existingScore) > 0) {

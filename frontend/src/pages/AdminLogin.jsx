@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import '../css/adminlogin.css'
 
 const AdminLogin = () => {
     const adminName = 'admin';
@@ -32,7 +33,7 @@ const AdminLogin = () => {
     return (
         <div className="container">
             <h1>Admin Login</h1>
-            <form onSubmit={handleLogin}>
+            <form onSubmit={handleLogin} className="form-admin">
                 <label htmlFor="adminUsername">Admin Username</label>
         <input
           id="adminUsername"

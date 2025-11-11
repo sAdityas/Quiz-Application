@@ -1,5 +1,4 @@
-from flask import Flask, send_from_directory
-import os
+from flask import Flask
 from flask_cors import CORS
 from models import db
 from routes.quiz import quiz_bp
@@ -7,7 +6,7 @@ from routes.user import user
 from routes.paper import paper_bp
 from routes.excelinsert import excelInsert_bp
 
-app = Flask(__name__, static_folder="../frontend/build", static_url_path="/")
+app = Flask(__name__)
 CORS(app)
 
 # Single unified database
@@ -24,15 +23,6 @@ app.register_blueprint(excelInsert_bp, url_prefix='/api/excelInsert')
 @app.before_request
 def create_tables():
     db.create_all()
-
-@app.route("/", defaults={"path": ""})
-@app.route("/<path:path>")
-def serve_react(path):
-    build_dir = app.static_folder
-    index_path = os.path.join(build_dir, "index.html")
-    if path != "" and os.path.exists(os.path.join(build_dir, path)):
-        return send_from_directory(build_dir, path)
-    return send_from_directory(build_dir, "index.html")
 
 if __name__ == '__main__':
     with app.app_context():
