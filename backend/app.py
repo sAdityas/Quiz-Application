@@ -7,7 +7,11 @@ from routes.user import user
 from routes.paper import paper_bp
 from routes.excelinsert import excelInsert_bp
 
-app = Flask(__name__, static_folder="../frontend/build", static_url_path="/")
+app = Flask(__name__, static_folder="../frontend/build", static_url_path="/")import os
+print("📁 Current working directory:", os.getcwd())
+print("📁 Files here:", os.listdir(os.getcwd()))
+print("📁 Frontend folder exists?", os.path.exists("../frontend/build"))
+
 CORS(app)
 
 # Single unified database
