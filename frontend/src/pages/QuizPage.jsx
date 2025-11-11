@@ -21,7 +21,7 @@ const QuizPage = () => {
 
   useEffect(() => {
     axios
-      .get('http://localhost:5000/api/quiz/' + paperId)
+      .get('/api/quiz/' + paperId)
       .then(res => {
         setQuestions(res.data.Questions);
         setLoading(false);
@@ -86,14 +86,14 @@ const QuizPage = () => {
       if (Number(processedAnswers[q.id]) === Number(q.correct_option)) calculatedScore++;
     });
 
-    await axios.post('http://localhost:5000/api/user/score', {
+    await axios.post('/api/user/score', {
       answers: processedAnswers,
       user_id,
       score: calculatedScore,
     });
 
     await axios.post(
-      'http://localhost:5000/api/excelInsert/manual',
+      '/api/excelInsert/manual',
       { valuesOnly: Object.values(processedAnswers), paperId, user_id},
       { headers: { 'Content-Type': 'application/json' } }
     );

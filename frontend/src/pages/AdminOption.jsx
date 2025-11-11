@@ -13,7 +13,7 @@ const AdminOption = () => {
 
   React.useEffect(() => {
     // Fetch available papers for the dropdown
-    axios.get(`http://localhost:5000/api/paper/all`)
+    axios.get(`/api/paper/all`)
       .then((response) => {
         setPapers(response?.data?.papers || []);
         setTitle(response?.data?.papers[0]?.title || 'Untitled'); 
@@ -33,7 +33,7 @@ const AdminOption = () => {
 
   const handleRemoveAll = async () => {
     try {
-      const response = await axios.post(`http://localhost:5000/api/quiz/removeAll/${paperId}`); 
+      const response = await axios.post(`/api/quiz/removeAll/${paperId}`); 
       if (response.data.error) {
         setMessage(response.data.error);
         setTimeout(() => {
@@ -55,7 +55,7 @@ const AdminOption = () => {
   const handleResetScore = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5000/api/user/resetScore');
+      await axios.post('/api/user/resetScore');
       setMessage('All Scores Reset');
       setTimeout(() => {
         setMessage('');
@@ -76,7 +76,7 @@ const AdminOption = () => {
   const handleDownloadReports = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/excelInsert/downloadZip/${paperId}`, // Updated route to include paperId
+        `/api/excelInsert/downloadZip/${paperId}`, // Updated route to include paperId
         { responseType: 'blob' }
       );
       
@@ -93,7 +93,7 @@ const AdminOption = () => {
       document.body.appendChild(link);
       link.click();
       link.remove();
-      await axios.post('http://localhost:5000/api/user/resetScore');
+      await axios.post('/api/user/resetScore');
       setMessage('All Scores Reset');
       localStorage.removeItem('completed');
       sessionStorage.removeItem('score');

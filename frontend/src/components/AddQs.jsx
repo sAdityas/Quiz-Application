@@ -13,7 +13,7 @@ const AddQs = () => {
 
   // Fetch existing papers
   useEffect(() => {
-    axios.get('http://localhost:5000/api/paper/all')
+    axios.get('/api/paper/all')
       .then(res => setPapers(res.data.papers || []))
       .catch(err => console.error("Error fetching papers:", err));
   }, []);
@@ -27,7 +27,7 @@ const AddQs = () => {
   const handleRemove = async (e) => {
     e.preventDefault();
    try {
-      const response = await axios.post(`http://localhost:5000/api/quiz/removeAll/${paperId}`); 
+      const response = await axios.post(`/api/quiz/removeAll/${paperId}`); 
       if (response.data.error) {
         setMessage(response.data.error);
         setTimeout(() => {
@@ -57,7 +57,7 @@ const AddQs = () => {
     }
 
     try {
-      await axios.post('http://localhost:5000/api/quiz/add', {
+      await axios.post('/api/quiz/add', {
         paperId: parseInt(paperId),
         qs,
         options,

@@ -25,7 +25,7 @@ const AddUser = () =>{
         if (isSubmitting) return;
         setIsSubmitting(true)
         try{
-            await axios.post('http://localhost:5000/api/user/add', {
+            await axios.post('/api/user/add', {
                 user,
                 Uid : id
             });

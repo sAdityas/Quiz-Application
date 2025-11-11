@@ -18,7 +18,7 @@ const SnD = () => {
 
   const fetchQuestions = async () => {
     try {
-      const res = await axios.get(`http://localhost:5000/api/quiz/${paperId}`);
+      const res = await axios.get(`/api/quiz/${paperId}`);
       setQuestions(res.data.Questions || []);
     } catch (err) {
       setMessage('Error fetching questions');
@@ -38,7 +38,7 @@ const SnD = () => {
     try {
       await Promise.all(
         selectedQs.map(id =>
-          axios.delete(`http://localhost:5000/api/quiz/${id}`)
+          axios.delete(`/api/quiz/${id}`)
         )
       );
       setMessage('Selected questions deleted');
