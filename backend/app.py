@@ -52,6 +52,34 @@ def serve_react(path):
 def health():
     return {"status":"ok"}, 200
 
+
+# --- Diagnostic: show registered blueprints and routes in logs ---
+def _dump_routes():
+    print("===== FLASK BLUEPRINTS =====")
+    for name, bp in app.blueprints.items():
+        print(f"blueprint: {name}, import_name: {bp.import_name}")
+
+    print("===== FLASK URL RULES =====")
+    rules = []
+    for rule in sorted(app.url_map.iter_rules(), key=lambda r: (r.rule, r.endpoint)):
+        methods = ",".join(sorted(rule.methods - {"HEAD", "OPTIONS"}))
+        print(f"{rule.rule:40s} -> endpoint: {rule.endpoint:30s} methods: {methods}")
+        rules.append({"rule": rule.rule, "endpoint": rule.endpoint, "methods": list(rule.methods)})
+
+    return rules
+
+# A debug route to fetch registered rules from the running app
+@app.route("/__debug__/routes")
+def debug_routes():
+    rules = _dump_routes()
+    return jsonify({"routes_count": len(rules), "routes": rules}), 200
+
+# Also a lightweight check for a specific blueprint name if you know it:
+@app.route("/__debug__/blueprints")
+def debug_blueprints():
+    keys = list(app.blueprints.keys())
+    return jsonify({"blueprints": keys}), 200
+
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
